@@ -1,6 +1,6 @@
 pipeline{
     agent{
-        label "ubuntu-jammy-agent"
+        label "Java"
     }
     tools {
         jdk 'Java17'
