@@ -1,12 +1,12 @@
 pipeline{
     agent{
-        label "jenkins-agent"
+        label "ubuntu-jammy-agent"
     }
     tools {
         jdk 'Java17'
         maven 'Maven3'
     }
-    environment {
+   /* environment {
         APP_NAME = "complete-prodcution-e2e-pipeline"
         RELEASE = "1.0.0"
         DOCKER_USER = "dmancloud"
@@ -15,7 +15,7 @@ pipeline{
         IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
         JENKINS_API_TOKEN = credentials("JENKINS_API_TOKEN")
 
-    }
+    }*/
     stages{
         stage("Cleanup Workspace"){
             steps {
@@ -65,7 +65,7 @@ pipeline{
 
         }
 
-        stage("Build & Push Docker Image") {
+        /*stage("Build & Push Docker Image") {
             steps {
                 script {
                     docker.withRegistry('',DOCKER_PASS) {
@@ -105,13 +105,13 @@ pipeline{
                 script {
                     sh "curl -v -k --user admin:${JENKINS_API_TOKEN} -X POST -H 'cache-control: no-cache' -H 'content-type: application/x-www-form-urlencoded' --data 'IMAGE_TAG=${IMAGE_TAG}' 'https://jenkins.dev.dman.cloud/job/gitops-complete-pipeline/buildWithParameters?token=gitops-token'"
                 }
-            }
+            }*/
 
         }
 
     }
 
-    post {
+   /* post {
         failure {
             emailext body: '''${SCRIPT, template="groovy-html.template"}''', 
                     subject: "${env.JOB_NAME} - Build # ${env.BUILD_NUMBER} - Failed", 
@@ -122,5 +122,5 @@ pipeline{
                     subject: "${env.JOB_NAME} - Build # ${env.BUILD_NUMBER} - Successful", 
                     mimeType: 'text/html',to: "dmistry@yourhostdirect.com"
           }      
-    }
+    }*/
 }
