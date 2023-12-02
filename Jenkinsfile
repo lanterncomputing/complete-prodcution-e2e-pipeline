@@ -44,11 +44,11 @@ pipeline{
             }
 
         }
-       /* 
+      
         stage("Sonarqube Analysis") {
             steps {
                 script {
-                    withSonarQubeEnv(credentialsId: 'jenkins-sonarqube-token') {
+                    withSonarQubeEnv(credentialsId: 'sonarqube-token') {
                         sh "mvn sonar:sonar"
                     }
                 }
@@ -63,7 +63,7 @@ pipeline{
                 }
             }
 
-        }*/
+        }
 
         /*stage("Build & Push Docker Image") {
             steps {
