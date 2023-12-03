@@ -1,11 +1,11 @@
 pipeline{
     agent{
-        label "jnlp-agent-docker"
+        label "jnlp-agent-java"
     }
     tools {
         jdk 'Java17'
         maven 'Maven3'
-	
+	docker 'Docker'
     }
     environment {
         APP_NAME = "complete-prodcution-e2e-pipeline"
