@@ -1,6 +1,6 @@
 pipeline{
     agent{
-        label "Docker"
+        label "jnlp-agent-docker"
     }
     tools {
         jdk 'Java17'
