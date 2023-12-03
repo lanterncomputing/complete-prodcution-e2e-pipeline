@@ -1,6 +1,6 @@
 pipeline{
     agent{
-        label "jnlp-agent-java"
+        label "jnlp-agent-jdk11"
     }
     tools {
         jdk 'Java17'
