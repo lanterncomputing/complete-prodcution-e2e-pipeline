@@ -6,16 +6,15 @@ pipeline{
         jdk 'Java17'
         maven 'Maven3'
     }
-   /* environment {
+    environment {
         APP_NAME = "complete-prodcution-e2e-pipeline"
         RELEASE = "1.0.0"
-        DOCKER_USER = "dmancloud"
-        DOCKER_PASS = 'dockerhub'
-        IMAGE_NAME = "${DOCKER_USER}" + "/" + "${APP_NAME}"
+        REGISTRY = 'https://harbor.lantern-computing.com'
+	HARBOR_CREDENTIAL = credentials('harbor')
+	HARBOR_NAMESPACE = 'test'
+        IMAGE_NAME = "${HARBOR_NAMESPACE}" + "/" + "${APP_NAME}"
         IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
-        JENKINS_API_TOKEN = credentials("JENKINS_API_TOKEN")
-
-    }*/
+    }
     stages{
         stage("Cleanup Workspace"){
             steps {
@@ -65,14 +64,14 @@ pipeline{
 
         }
 
-        /*stage("Build & Push Docker Image") {
+        stage("Build & Push Docker Image") {
             steps {
                 script {
-                    docker.withRegistry('',DOCKER_PASS) {
+                    docker.withRegistry(REGISTRY, HARBOR_CREDENTIAL) {
                         docker_image = docker.build "${IMAGE_NAME}"
                     }
 
-                    docker.withRegistry('',DOCKER_PASS) {
+                    docker.withRegistry(REGISTRY,HARBOR_CREDENTIAL) {
                         docker_image.push("${IMAGE_TAG}")
                         docker_image.push('latest')
                     }
@@ -80,8 +79,8 @@ pipeline{
             }
 
         }
-
-        stage("Trivy Scan") {
+	    
+      /*  stage("Trivy Scan") {
             steps {
                 script {
 		   sh ('docker run -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy image dmancloud/complete-prodcution-e2e-pipeline:1.0.0-22 --no-progress --scanners vuln  --exit-code 0 --severity HIGH,CRITICAL --format table')
