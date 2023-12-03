@@ -67,11 +67,11 @@ pipeline{
         stage("Build & Push Docker Image") {
             steps {
                 script {
-                    docker.withRegistry(REGISTRY, HARBOR_CREDENTIAL) {
+                    docker.withRegistry(REGISTRY, 'harbor') {
                         docker_image = docker.build "${IMAGE_NAME}"
                     }
 
-                    docker.withRegistry(REGISTRY,HARBOR_CREDENTIAL) {
+                    docker.withRegistry(REGISTRY,'harbor') {
                         docker_image.push("${IMAGE_TAG}")
                         docker_image.push('latest')
                     }
