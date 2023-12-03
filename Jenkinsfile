@@ -1,6 +1,6 @@
 pipeline{
     agent{
-        label "Java"
+        label "Docker"
     }
     tools {
         jdk 'Java17'
@@ -10,7 +10,7 @@ pipeline{
         APP_NAME = "complete-prodcution-e2e-pipeline"
         RELEASE = "1.0.0"
         REGISTRY = 'https://harbor.lantern-computing.com'
-	HARBOR_CREDENTIAL = credentials('harbor')
+	HARBOR_CREDENTIAL ='harbor'
 	HARBOR_NAMESPACE = 'test'
         IMAGE_NAME = "${HARBOR_NAMESPACE}" + "/" + "${APP_NAME}"
         IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
@@ -67,11 +67,11 @@ pipeline{
         stage("Build & Push Docker Image") {
             steps {
                 script {
-                    docker.withRegistry(REGISTRY, 'harbor') {
+                    docker.withRegistry(REGISTRY, HARBOR_CREDENTIAL) {
                         docker_image = docker.build "${IMAGE_NAME}"
                     }
 
-                    docker.withRegistry(REGISTRY,'harbor') {
+                    docker.withRegistry(REGISTRY,HARBOR_CREDENTIAL) {
                         docker_image.push("${IMAGE_TAG}")
                         docker_image.push('latest')
                     }
