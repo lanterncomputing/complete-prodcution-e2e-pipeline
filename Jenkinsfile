@@ -5,7 +5,6 @@ pipeline{
     tools {
         jdk 'Java17'
         maven 'Maven3'
-	'org.jenkinsci.plugins.docker.commons.tools.DockerTool' '18.09'
     }
     environment {
         APP_NAME = "complete-prodcution-e2e-pipeline"
