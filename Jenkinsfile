@@ -16,12 +16,13 @@ pipeline{
         IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
     }
     stages{
+	/*    
         stage("Cleanup Workspace"){
             steps {
                 cleanWs()
             }
 
-        }
+        }*/
     
         stage("Checkout from SCM"){
             steps {
