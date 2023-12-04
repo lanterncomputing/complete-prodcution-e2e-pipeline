@@ -35,6 +35,7 @@ pipeline{
 		    
 		sh "echo $JAVA_HOME"
 		    sh "ls $JAVA_HOME"
+		    sh "javac --version"
                 sh "mvn clean package"
             }
 
