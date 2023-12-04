@@ -34,6 +34,7 @@ pipeline{
             steps {
 		    
 		sh "echo $JAVA_HOME"
+		    sh "ls $JAVA_HOME"
                 sh "mvn clean package"
             }
 
