@@ -32,6 +32,8 @@ pipeline{
 
         stage("Build Application"){
             steps {
+		    
+		sh "echo $JAVA_HOME"
                 sh "mvn clean package"
             }
 
