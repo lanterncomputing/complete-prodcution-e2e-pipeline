@@ -38,7 +38,8 @@ pipeline{
 		    sh "ls $JAVA_HOME"
 		    //sh "chmod +X $JAVA_HOME/*"
 		    //sh "$JAVA_HOME/java --version"
-		    sh "$JAVA_HOME/bin/javac --version"
+		    //sh "$JAVA_HOME/bin/javac --version"
+		    sh "pwd"
                 sh "mvn clean package"
             }
 
