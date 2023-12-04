@@ -3,7 +3,7 @@ pipeline{
         label "agent-docker"
     }
     tools {
-        jdk 'Java21'
+        jdk 'openJDK21'
         maven 'Maven3'
     }
     environment {
