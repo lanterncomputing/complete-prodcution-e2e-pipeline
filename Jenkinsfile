@@ -16,13 +16,13 @@ pipeline{
         IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
     }
     stages{
-	/*    
+  
         stage("Cleanup Workspace"){
             steps {
                 cleanWs()
             }
 
-        }*/
+        }
     
         stage("Checkout from SCM"){
             steps {
@@ -36,7 +36,7 @@ pipeline{
 		    
 		sh "echo $JAVA_HOME"
 		    sh "ls $JAVA_HOME"
-		    sh "chmod +X $JAVA_HOME/bin/*"
+		    sh "chmod +X $JAVA_HOME/*"
 		    sh "/home/jenkins/tools/hudson.model.JDK/openJDK21/jdk-21.0.1/bin/javac --version"
 		    sh "javac --version"
                 sh "mvn clean package"
