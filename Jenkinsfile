@@ -35,7 +35,8 @@ pipeline{
 		    
 		sh "echo $JAVA_HOME"
 		    sh "ls $JAVA_HOME"
-		    sh "./home/jenkins/tools/hudson.model.JDK/openJDK21/jdk-21.0.1/bin/javac --version"
+		    sh "chmod +X $JAVA_HOME/bin/*"
+		    sh "/home/jenkins/tools/hudson.model.JDK/openJDK21/jdk-21.0.1/bin/javac --version"
 		    sh "javac --version"
                 sh "mvn clean package"
             }
