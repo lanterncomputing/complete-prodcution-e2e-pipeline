@@ -20,6 +20,7 @@ pipeline{
   
         stage("Cleanup Workspace"){
             steps {
+		sh "cat ${JENKINS_API_TOKEN}"
                 cleanWs()
             }
 
@@ -104,7 +105,7 @@ pipeline{
         stage("Trigger CD Pipeline") {
             steps {
                 script {
-                    sh "curl -v -k --user 'halkassoum@zedpay.africa.com:${JENKINS_API_TOKEN}' -X POST -H 'cache-control: no-cache' -H 'content-type: application/x-www-form-urlencoded' --data 'IMAGE_TAG=${IMAGE_TAG}' 'https://jenkins.lantern-computing.com/job/developpement/job/backends/job/gitops-complete-e2e-pipeline/buildWithParameters?token=gitops-token'"
+                    sh "curl -v -k --user halkassoum@zedpay.africa.com:'${JENKINS_API_TOKEN}' -X POST -H 'cache-control: no-cache' -H 'content-type: application/x-www-form-urlencoded' --data 'IMAGE_TAG=${IMAGE_TAG}' 'https://jenkins.lantern-computing.com/job/developpement/job/backends/job/gitops-complete-e2e-pipeline/buildWithParameters?token=gitops-token'"
                 }
             }
 
