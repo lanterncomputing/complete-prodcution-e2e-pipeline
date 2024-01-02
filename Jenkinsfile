@@ -20,7 +20,6 @@ pipeline{
   
         stage("Cleanup Workspace"){
             steps {
-		sh "cat ${JENKINS_API_TOKEN}"
                 cleanWs()
             }
 
