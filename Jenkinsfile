@@ -11,7 +11,7 @@ pipeline{
         RELEASE = "1.0.0"
         REGISTRY = 'https://harbor.lantern-computing.com'
 	HARBOR_CREDENTIAL ='harbor'
-	HARBOR_NAMESPACE = 'test'
+	HARBOR_NAMESPACE = 'demoapp'
         IMAGE_NAME = "${HARBOR_NAMESPACE}" + "/" + "${APP_NAME}"
         IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
     }
