@@ -14,6 +14,7 @@ pipeline{
 	HARBOR_NAMESPACE = 'demoapp'
         IMAGE_NAME = "${HARBOR_NAMESPACE}" + "/" + "${APP_NAME}"
         IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
+	JENKINS_API_TOKEN = "${JENKINS_API_TOKEN}"
     }
     stages{
   
